@@ -163,7 +163,13 @@
                     <div class="col-md-5 pr-md-1">
                       <div class="form-group">
                         <label for="id_jenis">ID Jenis </label>
-                        <input type="number" class="form-control" placeholder="ID jenis" name="id_jenis" id="id_jenis">
+                        <select name="id_jenis" id="id_jenis">
+                          <option value="5">Pilih jenis</option>
+                          <option value="6">senar silicon</option>
+                          <option value="7">senar gelasan</option>
+                          <option value="9">senar mati</option>
+                          <option value="10">senar semi mati</option>
+                        </select>
                       </div>
                     </div>
                     </li>

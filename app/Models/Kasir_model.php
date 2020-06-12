@@ -26,4 +26,11 @@ class Kasir_model{
         $this->db->bind("kode_barang",$kode);
         return json_encode($this->db->single());
     }
+    public function getAllBarang(){
+        $query = "SELECT * FROM barang b JOIN jenis j ON j.id_jenis = b.id_jenis";
+
+        $this->db->query($query);
+       
+        return $this->db->resultSet();
+    }
 }

@@ -282,7 +282,7 @@
         var id = $("#kodebarang").val();
         var jumlahbarang = $("#jumlahbarang").val();
         $.ajax({
-          url : "http://localhost/black-dashboard-master/public/Home/getBarangByKode/",
+          url : "http://localhost/aryajaya-kasir/public/Home/getBarangByKode/",
           type : "post",
           data : {id : id},
           success : function(data){ 

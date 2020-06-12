@@ -5,6 +5,11 @@ class Home extends Controller{
     }
 
     public function tambahbarang(){
+        $data["barang"] = $this->model("Kasir_model")->getAllBarang();
+        $this->view("Home/data-barang",$data);
+    }
+    public function barangbaru(){
+        
         $this->view("Home/tambah");
     }
 

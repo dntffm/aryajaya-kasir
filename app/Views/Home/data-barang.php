@@ -13,12 +13,6 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<?php
-  require 'functions.php';
-  $data = mysqli_query($conn, "SELECT kode_barang,nama_barang,harga,stok_barang,jenis FROM barang INNER JOIN jenis ON barang.id_jenis=jenis.id_jenis");
-
-  
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,11 +28,11 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="<?=BASE_URL?>/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link href="<?=BASE_URL?>/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="<?=BASE_URL?>/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -47,7 +41,7 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
     -->
-      <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper">
         <div class="logo">
           <a href="javascript:void(0)" class="simple-text logo-mini">
             MC
@@ -57,26 +51,26 @@
           </a>
         </div>
         <ul class="nav">
-        <li class="active ">
-            <a href="./index.php">
+          <li class="active ">
+            <a href="<?=BASE_URL?>/Home/">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="active ">
-            <a href="./kasir.php">
+            <a href="<?=BASE_URL?>/Home/kasir">
               <i class="tim-icons icon-coins"></i>
               <p>Kasir</p>
             </a>
           </li>
           <li class="active ">
-            <a href="./rekap.php">
+            <a href="<?=BASE_URL?>/Home/rekap">
             <i class="tim-icons icon-chart-bar-32"></i>
               <p>Rekap</p>
             </a>
           </li>
           <li class="active ">
-            <a href="./data-barang.php">
+            <a href="<?=BASE_URL?>/Home/tambahbarang">
             <i class="tim-icons icon-chart-bar-32"></i>
               <p>Data Barang</p>
             </a>
@@ -143,7 +137,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="title">Data Barang</h3>
-                <a type="" class="btn btn-fill btn-primary" href="tambah.php">Tambah</a>
+                <a type="" class="btn btn-fill btn-primary" href="<?=BASE_URL?>/Home/barangbaru">Tambah</a>
               </div>
               <div class="table-responsive">
                   <table class="table tablesorter " id="">
@@ -173,23 +167,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- Isi Tabel -->
-                      <?php $a = 1; ?>
-                      <?php while($row = mysqli_fetch_assoc($data)) : ?>
+                      <?php foreach($data["barang"] as $barang) :?>
                       <tr>
-                        <td><?= $a?></td>
-                        <td><?= $row["kode_barang"]?></td>
-                        <td><?= $row["nama_barang"]?></td>
-                        <td><?= $row["jenis"]?></td>
-                        <td><?= $row["harga"]?></td>
-                        <td><?= $row["stok_barang"]?></td>
+                        <td><?=1?></td>
+                        <td><?=$barang["kode_barang"]?></td>
+                        <td><?=$barang["nama_barang"]?></td>
+                        <td><?=$barang["jenis"]?></td>
+                        <td><?=$barang["harga"]?></td>
+                        <td><?=$barang["stok_barang"]?></td>
                         <td>
                         <button type="submit" class="btn btn-fill btn-secondary">Ubah</button>
                         <button type="submit" class="btn btn-fill btn-danger">Hapus</button>
                         </td>
                       </tr>
-                      <?php $a++; ?>
-                      <?php endwhile;?>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>
