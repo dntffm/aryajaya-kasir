@@ -18,7 +18,8 @@ class Home extends Controller{
     }
 
     public function kasir(){
-        $this->view("Home/kasir");
+        $data["barang"] = $this->model("Kasir_model")->getAllbarang();
+        $this->view("Home/kasir",$data);
     }
 
     public function insertTambahData(){
@@ -29,5 +30,11 @@ class Home extends Controller{
     public function getBarangByKode(){
         $kode = $_POST["id"];
         echo $this->model("Kasir_model")->getBarangByKode($kode);
+    }
+
+    public function hapusBarang($id){
+        if($this->model("Kasir_model")->hapusBarang($id) > 0){
+            header("Location: ".BASE_URL."/Home/tambahbarang");
+        }
     }
 }

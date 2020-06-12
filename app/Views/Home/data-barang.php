@@ -177,7 +177,7 @@
                         <td><?=$barang["stok_barang"]?></td>
                         <td>
                         <button type="submit" class="btn btn-fill btn-secondary">Ubah</button>
-                        <button type="submit" class="btn btn-fill btn-danger">Hapus</button>
+                        <a href="<?=BASE_URL?>/Home/hapusBarang/<?=$barang["id_barang"]?>" onclick="return confirm('Yakin?')" class="btn btn-fill btn-danger">Hapus</a>
                         </td>
                       </tr>
                       <?php endforeach; ?>

@@ -155,9 +155,20 @@
                     </div>
                     <div class="tombol submit">
                       <button type="button" id="tambah" class="btn btn-fill btn-primary">Tambah</button>
-                      <button type="submit" class="btn btn-fill btn-success">Bayar</button>
-                      <button type="submit" class="btn btn-fill btn-danger">Batal</button>
+                      <button type="submit" id="bayar" class="btn btn-fill btn-success">Bayar</button>
+                      <a href="" class="btn btn-fill btn-danger">Batal</a>
                     </div>
+              <div id="panelbayar" style="margin-left:20px">
+                        <div class="form-group">
+                          <label>Bayar</label>
+                          <input type="text" class="form-control" placeholder="Total Bayar" id="bayar">
+                        </div>
+                        <p>Total Bayar: <span id="totalbayar"></span> </p>
+                        <div class="tombol submit">
+                          <button type="button" id="hitungkembalian" class="btn btn-fill btn-primary">Hitung Kembalian</button>
+                        </div>
+                        <span id="kembalian"></span>
+                </div>
               <div class="table-responsive">
                   <table class="table tablesorter " id="">
                     <thead class=" text-primary">
@@ -277,7 +288,9 @@
   <script src="<?=BASE_URL?>/assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?=BASE_URL?>/assets/demo/demo.js"></script>
   <script>
+    var totalAll = 0;
     $(document).ready(function() {
+      $("#panelbayar").hide();
       $("#tambah").click(function(){
         var id = $("#kodebarang").val();
         var jumlahbarang = $("#jumlahbarang").val();
@@ -288,6 +301,7 @@
           success : function(data){ 
             console.log(data);
             var json = JSON.parse(data);   
+            totalAll += (json.harga*jumlahbarang)
             $("#bodydum").append(
               "<tr><td></td><td>"+json.kode_barang+"</td><td>"+json.nama_barang+"</td><td>"+jumlahbarang+"</td><td>"+json.harga+"</td><td></td><td>"+jumlahbarang*json.harga+"</td></tr>"
             )
@@ -295,7 +309,15 @@
         })
       })
       
-
+      $("#bayar").click(function(){
+        $("#panelbayar").show();
+        $("#totalbayar").text(totalAll);
+      })
+      
+      $("#hitungkembalian").click(function(){
+        
+        $("#kembalian").text($("totalbayar").text() - totalAll);
+      })
 
       $().ready(function() {
         $sidebar = $('.sidebar');

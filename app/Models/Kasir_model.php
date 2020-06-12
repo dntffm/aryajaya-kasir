@@ -33,4 +33,13 @@ class Kasir_model{
        
         return $this->db->resultSet();
     }
+
+    public function hapusBarang($id){
+        $query = "DELETE FROM barang WHERE id_barang=:id_barang";
+        $this->db->query($query);
+        $this->db->bind("id_barang",$id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
